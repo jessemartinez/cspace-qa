@@ -16,7 +16,7 @@ public class Record {
             GROUP = 8;
 
     public int type;
-    public String url, shortname, shortChainName, longname, IDFieldSelector, requiredFieldSelector, requiredFieldMessage, generatedPostfix;
+    public String url, shortname, tabname, shortChainName, longname, IDFieldSelector, requiredFieldSelector, requiredFieldMessage, generatedPostfix;
 
 
     public HashMap<String, String> fieldMap, selectMap, dateMap, vocabMap;
@@ -61,6 +61,9 @@ public class Record {
     public static String getRecordTypePP(int recordType) {
         return records[recordType].longname;
     }
+	public static String getRecordTypeTabName(int recordType) {
+        return records[recordType].tabname;
+    }
 
     public static String getGeneratedPostfix(int recordType) {
         return records[recordType].generatedPostfix;
@@ -103,7 +106,7 @@ public class Record {
             case CATALOGING:
                 this.url = "cataloging.html";
                 this.shortname = "cataloging";
-                this.longname = "Cataloging";
+                this.tabname = this.longname = "Cataloging";
                 this.shortChainName = "collection-object";
                 this.requiredFieldMessage = "Please specify an Identification Number";
                 this.IDFieldSelector = ".csc-object-identification-object-number";
@@ -384,7 +387,7 @@ public class Record {
             case INTAKE:
             this.url = "intake.html";
                 this.shortname = "intake";
-                this.longname = "Intake";
+                this.tabname = this.longname = "Intake";
                 this.requiredFieldMessage = "Please specify an Intake Entry Number";
                 this.IDFieldSelector = ".csc-intake-entry-number";
                 this.requiredFieldSelector = ".csc-intake-entry-number";
@@ -431,7 +434,7 @@ public class Record {
             case GROUP:
                 this.url = "group.html";
                 this.shortname = "group";
-                this.longname = "Group";
+                this.tabname = this.longname = "Group";
                 this.IDFieldSelector = ".csc-group-title";
                 this.requiredFieldSelector = ".csc-group-title";
                 this.requiredFieldMessage = "Please specify a Title";
@@ -447,7 +450,7 @@ public class Record {
             case LOAN_IN:
                 this.url = "loanin.html";
                 this.shortname = "loanin";
-                this.longname = "Loan In";
+                this.tabname = this.longname = "Loan In";
                 this.IDFieldSelector = ".csc-loanIn-loanInNumber";
                 this.requiredFieldSelector = ".csc-loanIn-loanInNumber";
                 this.requiredFieldMessage = "Please specify a Loan In Number";
@@ -482,7 +485,7 @@ public class Record {
             case LOAN_OUT:
                 this.url = "loanout.html";
                 this.shortname = "loanout";
-                this.longname = "Loan Out";
+                this.tabname = this.longname = "Loan Out";
                 this.IDFieldSelector = ".csc-loanOut-loanOutNumber";
                 this.requiredFieldSelector = ".csc-loanOut-loanOutNumber";
                 this.requiredFieldMessage = "Please specify a Loan Out Number";
@@ -511,7 +514,7 @@ public class Record {
             case ACQUISITION:
                 this.url = "acquisition.html";
                 this.shortname = "acquisition";
-                this.longname = "Acquisition";
+                this.tabname = this.longname = "Acquisition";
                 this.IDFieldSelector = ".csc-acquisition-numberPatternChooser-reference-number";
                 this.requiredFieldSelector = ".csc-acquisition-numberPatternChooser-reference-number";
                 this.requiredFieldMessage = "Please specify an Acquisition Reference Number";
@@ -552,7 +555,8 @@ public class Record {
             case MOVEMENT:
                 this.url = "movement.html";
                 this.shortname = "movement";
-                this.longname = "Location and Movement";
+                this.tabname = "Loc/Mov/Inv...";
+                this.longname = "Location/Movement/Inventory";
                 this.IDFieldSelector = ".csc-movement-movementReferenceNumber";
                 this.requiredFieldSelector = ".csc-movement-currentLocation";
                 this.requiredFieldMessage = "Please specify a Current Location";
@@ -578,7 +582,7 @@ public class Record {
             case MEDIA:
                 this.url = "Media.html";
                 this.shortname = "media";
-                this.longname = "Media Handling";
+                this.tabname = this.longname = "Media Handling";
                 this.IDFieldSelector = ".csc-media-identificationNumber";
                 this.requiredFieldSelector = ".csc-media-identificationNumber";
                 this.requiredFieldMessage = "Please specify an Identification Number";
@@ -626,7 +630,7 @@ public class Record {
             case OBJECT_EXIT:
                 this.url = "objectexit.html";
                 this.shortname = "objectexit";
-                this.longname = "Object Exit";
+                this.tabname = this.longname = "Object Exit";
                 this.IDFieldSelector = ".csc-objectexit-exitNumber";
                 this.requiredFieldSelector = ".csc-objectexit-exitNumber";
                 this.requiredFieldMessage = "Please specify an Exit Number";

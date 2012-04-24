@@ -34,15 +34,15 @@ public class SecondaryTabTests {
         Object[][] data = new Object[][]{
             //its the second entry being tested
             //comment out here to limit tests JJM
-            {Record.GROUP, Record.INTAKE},
-            {Record.INTAKE, Record.LOAN_IN},
-            {Record.LOAN_IN, Record.LOAN_OUT},
-            {Record.LOAN_OUT, Record.ACQUISITION},
-            {Record.ACQUISITION, Record.MOVEMENT},
-            {Record.GROUP, Record.MEDIA},
-            {Record.MEDIA, Record.OBJECT_EXIT},
-            {Record.OBJECT_EXIT, Record.GROUP},
-            {Record.LOAN_IN, Record.CATALOGING}
+            //{Record.GROUP, Record.INTAKE},
+            //{Record.INTAKE, Record.LOAN_IN},
+            //{Record.LOAN_IN, Record.LOAN_OUT},
+            //{Record.LOAN_OUT, Record.ACQUISITION},
+            {Record.ACQUISITION, Record.MOVEMENT}//,
+            //{Record.GROUP, Record.MEDIA},
+            //{Record.MEDIA, Record.OBJECT_EXIT},
+            //{Record.OBJECT_EXIT, Record.GROUP},
+            //{Record.LOAN_IN, Record.CATALOGING}
         };
         return Arrays.asList(data);
     }
@@ -166,6 +166,9 @@ public class SecondaryTabTests {
         createNewRelatedOfCurrent(secondaryType, selenium);
         //attempt saving and expect error message:
         selenium.click("css=.csc-relatedRecordsTab-" + Record.getRecordTypeShort(secondaryType) + " .saveButton");
+		if (selenium.isElementPresent("css=.csc-confirmationDialog .saveButton")){
+			selenium.click("css=.csc-confirmationDialog .saveButton");
+		}
         elementPresent("CSS=.cs-message-error", selenium);
         assertEquals(Record.getRequiredFieldMessage(secondaryType), selenium.getText("CSS=.cs-message-error #message"));
 
@@ -222,6 +225,9 @@ public class SecondaryTabTests {
         clearForm(secondaryType, selenium);
         //save record - and expect error due to missing ID
         selenium.click("css=.csc-relatedRecordsTab-" + Record.getRecordTypeShort(secondaryType) + " .saveButton");
+		if (selenium.isElementPresent("css=.csc-confirmationDialog .saveButton")){
+			selenium.click("css=.csc-confirmationDialog .saveButton");
+		}
         //expect error message due to missing required field\n");
         elementPresent("CSS=.cs-message-error", selenium);
         assertEquals(Record.getRequiredFieldMessage(secondaryType), selenium.getText("CSS=.cs-message-error #message"));

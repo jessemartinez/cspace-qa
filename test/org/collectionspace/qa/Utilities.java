@@ -150,8 +150,12 @@ public class Utilities {
     public static void save(Selenium selenium) throws Exception {
         //save record
         selenium.click("//input[@value='Save']");
+		if (selenium.isElementPresent("css=.csc-confirmationDialog .saveButton")){
+			selenium.click("css=.csc-confirmationDialog .saveButton");
+		}
         waitForRecordSave(selenium);
     }
+
 
     /**
      * FIXME: needs proper description
@@ -167,6 +171,9 @@ public class Utilities {
      */
     public static void saveSecondary(int secondaryType, String secondaryID, Selenium selenium) throws Exception {
         selenium.click("css=.csc-relatedRecordsTab-" + Record.getRecordTypeShort(secondaryType) + " .saveButton");
+		if (selenium.isElementPresent("css=.csc-confirmationDialog .saveButton")){
+			selenium.click("css=.csc-confirmationDialog .saveButton");
+		}
         //due to bug, expect record to be dismissed
         textNotPresent("Select number pattern", selenium);
         //and to appear on listing of related records
@@ -196,6 +203,9 @@ public class Utilities {
         }
         //and save
         selenium.click("//input[@value='Save']");
+		if (selenium.isElementPresent("css=.csc-confirmationDialog .saveButton")){
+			selenium.click("css=.csc-confirmationDialog .saveButton");
+		}
         waitForRecordSave(selenium);
     }
 
@@ -228,7 +238,7 @@ public class Utilities {
         String dialogSelector = ".cs-search-dialogFor-" + Record.getRecordTypeShort(secondaryType);
         //waitForRecordLoad(secondaryType, selenium); // JJM 2/15/12
         //go to secondary tab:
-        selenium.click("link=" + Record.getRecordTypePP(secondaryType));
+        selenium.click("link=" + Record.getRecordTypeTabName(secondaryType));
         elementPresent("//input[@value='Add record']", selenium);
         selenium.click("//input[@value='Add record']");
         elementPresent("css=" + dialogSelector + " :input[value='Create']", selenium);
@@ -257,7 +267,7 @@ public class Utilities {
     public static void openRelatedOf(int primaryType, String primaryID, int secondaryType, String secondaryID, Selenium selenium) throws Exception {
         open(primaryType, primaryID, selenium);
         //go to secondary tab:
-        selenium.click("link=" + Record.getRecordTypePP(secondaryType));
+        selenium.click("link=" + Record.getRecordTypeTabName(secondaryType));
         openRelatedOfCurrent(secondaryType, secondaryID, selenium);
     }
 
@@ -323,6 +333,9 @@ public class Utilities {
         elementPresent("ui-dialog-title-1", selenium);
         assertTrue(selenium.isTextPresent("exact:Save Changes?"));
         selenium.click("css=.csc-confirmationDialogButton-act");        //click save
+		if (selenium.isElementPresent("css=.csc-confirmationDialog .saveButton")){
+			selenium.click("css=.csc-confirmationDialog .saveButton");
+		}
         //Expect record and only that to be found in search results (to avoid false thruths :) )
         selenium.waitForPageToLoad(MAX_WAIT);
         elementPresent("link=" + modifiedID, selenium);

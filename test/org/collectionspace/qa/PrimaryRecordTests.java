@@ -27,14 +27,14 @@ public class PrimaryRecordTests {
     @Parameters
     public static Collection<Object[]> data() {
         Object[][] data = new Object[][]{
-            {Record.INTAKE},
+            /*{Record.INTAKE},
             {Record.LOAN_IN},
             {Record.LOAN_OUT},
             {Record.ACQUISITION},
             {Record.MEDIA},  
             {Record.OBJECT_EXIT}, 
             {Record.GROUP},
-            {Record.CATALOGING},
+            {Record.CATALOGING},*/
             {Record.MOVEMENT}
         };
         return Arrays.asList(data);
@@ -105,7 +105,10 @@ public class PrimaryRecordTests {
         fillForm(primaryType, primaryID, selenium);
         //save record
         log(Record.getRecordTypePP(primaryType) + ": expect save success message and that all fields are valid\n");
-        save(selenium);
+		save(selenium);
+		if (selenium.isElementPresent("css=.csc-confirmationDialog .saveButton")){
+			selenium.click("css=.csc-confirmationDialog .saveButton");
+		}
         //check values:
         verifyFill(primaryType, primaryID, selenium);
         //Uncomment below for debugging - gives you 30 secs to check everything is working
@@ -136,7 +139,10 @@ public class PrimaryRecordTests {
         //Delete contents of all fields:
         clearForm(primaryType, selenium);
         //save record - and expect error due to missing ID
-        selenium.click("//input[@value='Save']");
+        selenium.click("//input[@value='Save']"); 
+		if (selenium.isElementPresent("css=.csc-confirmationDialog .saveButton")){
+			selenium.click("css=.csc-confirmationDialog .saveButton");
+		}
         //expect error message due to missing required field\n");
         elementPresent("CSS=.cs-message-error", selenium);
         assertEquals(Record.getRequiredFieldMessage(primaryType), selenium.getText("CSS=.cs-message-error #message"));
