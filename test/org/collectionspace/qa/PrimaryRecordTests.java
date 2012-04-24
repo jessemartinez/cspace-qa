@@ -27,14 +27,14 @@ public class PrimaryRecordTests {
     @Parameters
     public static Collection<Object[]> data() {
         Object[][] data = new Object[][]{
-            /*{Record.INTAKE},
+            {Record.INTAKE},
             {Record.LOAN_IN},
             {Record.LOAN_OUT},
             {Record.ACQUISITION},
             {Record.MEDIA},  
             {Record.OBJECT_EXIT}, 
             {Record.GROUP},
-            {Record.CATALOGING},*/
+            {Record.CATALOGING},
             {Record.MOVEMENT}
         };
         return Arrays.asList(data);

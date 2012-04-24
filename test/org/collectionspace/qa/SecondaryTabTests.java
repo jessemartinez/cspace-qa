@@ -34,15 +34,15 @@ public class SecondaryTabTests {
         Object[][] data = new Object[][]{
             //its the second entry being tested
             //comment out here to limit tests JJM
-            //{Record.GROUP, Record.INTAKE},
-            //{Record.INTAKE, Record.LOAN_IN},
-            //{Record.LOAN_IN, Record.LOAN_OUT},
-            //{Record.LOAN_OUT, Record.ACQUISITION},
-            {Record.ACQUISITION, Record.MOVEMENT}//,
-            //{Record.GROUP, Record.MEDIA},
-            //{Record.MEDIA, Record.OBJECT_EXIT},
-            //{Record.OBJECT_EXIT, Record.GROUP},
-            //{Record.LOAN_IN, Record.CATALOGING}
+            {Record.GROUP, Record.INTAKE},
+            {Record.INTAKE, Record.LOAN_IN},
+            {Record.LOAN_IN, Record.LOAN_OUT},
+            {Record.LOAN_OUT, Record.ACQUISITION},
+            {Record.ACQUISITION, Record.MOVEMENT},
+            {Record.GROUP, Record.MEDIA},
+            {Record.MEDIA, Record.OBJECT_EXIT},
+            {Record.OBJECT_EXIT, Record.GROUP},
+            {Record.LOAN_IN, Record.CATALOGING}
         };
         return Arrays.asList(data);
     }
